@@ -1,91 +1,46 @@
 ---
-name: eslint
+name: "eslint"
+version: "10.0.2"
+downloads: 383.4M/month
 description: >
-  JavaScript/TypeScript linter. Use when: enforcing code style, catching bugs statically, consistent team code. NOT for: formatting (use Prettier), runtime errors.
+  An AST-based pattern checker for JavaScript.. Use when: ESLint uses Espree for JavaScript parsing; ESLint uses an AST to evaluate patterns in code; ESLint is completely pluggable, every single rule is a plugin and you can add more at runtime. NOT for: runtime data validation; security scanning.
 ---
 
 # eslint
 
+## Overview
+An AST-based pattern checker for JavaScript.. <br> # ESLint Website | Configure ESLint | Rules | Contribute to ESLint | Report Bugs | Code of Conduct | X | Discord | Mastodon | Bluesky ESLint is a tool for identifying and reporting on patterns found in ECMAScript/JavaScript code.
+
 ## Installation
 ```bash
-npm install -D eslint
-npx eslint --init  # interactive setup
-# or flat config:
-npm install -D eslint @eslint/js typescript-eslint
+npm install eslint
 ```
 
-## eslint.config.js (Flat Config — ESLint 9+)
+## Core API / Usage
+```bash
+npm init @eslint/config@latest
+```
+
+```bash
+npx eslint yourfile.js
+```
+
+## Common Patterns
+### Pattern 1
 
 ```js
-import js from '@eslint/js';
-import tseslint from 'typescript-eslint';
+This ensures that pnpm installs dependencies in a way that is more compatible with npm and is less likely to produce errors.
 
-export default tseslint.config(
-  js.configs.recommended,
-  ...tseslint.configs.recommended,
-  {
-    rules: {
-      '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
-      '@typescript-eslint/no-explicit-any': 'warn',
-      'no-console': ['warn', { allow: ['warn', 'error'] }],
-      'prefer-const': 'error',
-    },
-  },
-  { ignores: ['dist/**', 'node_modules/**'] }
-);
+## Configuration
+
+You can configure rules in your `eslint.config.js` files as in this example:
 ```
 
-## .eslintrc.json (Legacy Config)
-
-```json
-{
-  "extends": [
-    "eslint:recommended",
-    "plugin:@typescript-eslint/recommended"
-  ],
-  "parser": "@typescript-eslint/parser",
-  "plugins": ["@typescript-eslint"],
-  "rules": {
-    "no-unused-vars": "off",
-    "@typescript-eslint/no-unused-vars": "error"
-  },
-  "ignorePatterns": ["dist/", "*.js"]
-}
-```
-
-## package.json Scripts
-
-```json
-{
-  "scripts": {
-    "lint": "eslint src",
-    "lint:fix": "eslint src --fix"
-  }
-}
-```
-
-## Common Rules
-
-```js
-// Code quality
-'no-unused-vars': 'error'
-'no-undef': 'error'
-'no-console': 'warn'
-'prefer-const': 'error'
-'eqeqeq': ['error', 'always']
-
-// TypeScript
-'@typescript-eslint/no-explicit-any': 'warn'
-'@typescript-eslint/no-non-null-assertion': 'warn'
-'@typescript-eslint/consistent-type-imports': 'error'
-
-// Disable rules
-'no-shadow': 'off'  // use @typescript-eslint/no-shadow instead
+## Configuration
+```bash
+npm init @eslint/config@latest
 ```
 
 ## Tips & Gotchas
-- ESLint 9 uses flat config (`eslint.config.js`) — legacy `.eslintrc` still works but deprecated
-- Never use `// eslint-disable-next-line` extensively — fix the code instead
-- `typescript-eslint` v6+ requires `parserOptions.projectService: true` for type-aware rules
-- Use `eslint-config-prettier` to disable ESLint rules that conflict with Prettier
-- Run with `--cache` flag in CI to speed up: `eslint src --cache`
+- Supports both ESM (`import`) and CommonJS (`require()`).
+- Current version: 10.0.2. Check the changelog when upgrading across major versions.

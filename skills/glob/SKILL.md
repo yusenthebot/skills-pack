@@ -1,151 +1,73 @@
 ---
-name: glob
+name: "glob"
+version: "13.0.6"
+downloads: 1.2B/month
 description: >
-  File pattern matching using glob patterns to find files and directories. Use when: finding files matching patterns, listing directory contents with wildcards, building file lists for processing. NOT for: file watching (use chokidar), regex-based content search (use grep/ripgrep).
+  the most correct and second fastest glob implementation in JavaScript. Use when: writing unit and integration tests; mocking dependencies and APIs; snapshot testing. NOT for: production runtime logic; replacing static type checking.
 ---
 
 # glob
 
 ## Overview
-glob matches files using the patterns that shells use, like stars and stuff. It provides both async and sync APIs for finding files matching glob patterns such as `**/*.js`. As of v10+, the API is modernized with a class-based interface, iterable results, and better performance through built-in file walking.
+the most correct and second fastest glob implementation in JavaScript. # Glob Match files using the patterns the shell uses.
 
 ## Installation
 ```bash
 npm install glob
-# yarn
-yarn add glob
-# pnpm
-pnpm add glob
 ```
 
-## Core API / Commands
-
-### glob(pattern, [options])
-Returns a promise that resolves to an array of matching file paths.
-```js
-import { glob } from 'glob';
-
-// Find all JavaScript files recursively
-const jsFiles = await glob('**/*.js');
-
-// Find files in specific directory
-const configs = await glob('config/*.{json,yaml,yml}');
-
-// Multiple patterns
-const sources = await glob(['src/**/*.ts', 'lib/**/*.ts']);
+## Core API / Usage
+```bash
+npm install glob-bin
 ```
 
-### globSync(pattern, [options])
-Synchronous version that returns an array directly.
 ```js
-import { globSync } from 'glob';
-
-const files = globSync('**/*.test.ts');
-```
-
-### globStream(pattern, [options])
-Returns a readable stream of matching paths.
-```js
-import { globStream } from 'glob';
-
-const stream = globStream('**/*.log');
-stream.on('data', (filePath) => {
-  console.log('Found:', filePath);
-});
-stream.on('end', () => console.log('Done'));
-```
-
-### Glob class
-Lower-level class for more control.
-```js
-import { Glob } from 'glob';
-
-const g = new Glob('**/*.md', { cwd: './docs' });
-
-// Async iteration
-for await (const file of g) {
-  console.log(file);
-}
-
-// Or walk manually
-const results = await g.walk();
+// load using import
+import { glob, globSync, globStream, globStreamSync, Glob } from 'glob'
+// or using commonjs, that's fine, too
+const {
+  glob,
+  globSync,
+  globStream,
+  globStreamSync,
+  Glob,
+} = require('glob')
 ```
 
 ## Common Patterns
+### Pattern 1
 
-### Find and process files
 ```js
-import { glob } from 'glob';
-import fs from 'fs/promises';
-import path from 'path';
-
-async function findAndProcess() {
-  const files = await glob('src/**/*.ts', {
-    ignore: ['**/*.test.ts', '**/*.spec.ts', '**/node_modules/**'],
-  });
-
-  for (const file of files) {
-    const content = await fs.readFile(file, 'utf-8');
-    console.log(`${file}: ${content.length} chars`);
-  }
-}
+// all js files, but don't look in node_modules
+const jsfiles = await glob('**/*.js', { ignore: 'node_modules/**' })
 ```
 
-### Build tool: collect assets with filtering
+### Pattern 2
+
 ```js
-import { glob } from 'glob';
-
-async function collectAssets(srcDir, outDir) {
-  const images = await glob('**/*.{png,jpg,svg,webp}', {
-    cwd: srcDir,
-    dot: false,
-    absolute: true,
-  });
-
-  const styles = await glob('**/*.css', {
-    cwd: srcDir,
-    absolute: true,
-  });
-
-  return { images, styles };
-}
+// pass in a signal to cancel the glob walk
+const stopAfter100ms = await glob('**/*.css', {
+  signal: AbortSignal.timeout(100),
+})
 ```
 
-### Using cwd and returning absolute paths
-```js
-import { glob } from 'glob';
+### Pattern 3
 
-// Search relative to a specific directory
-const files = await glob('*.json', {
-  cwd: '/etc/myapp',
-  absolute: true,   // Return absolute paths
-});
-// => ['/etc/myapp/config.json', '/etc/myapp/secrets.json']
+```js
+// multiple patterns supported as well
+const images = await glob(['css/*.{png,jpeg}', 'public/*.{png,jpeg}'])
 ```
 
 ## Configuration
-Key options for glob v10+:
-
-| Option | Type | Default | Description |
-|--------|------|---------|-------------|
-| `cwd` | string | `process.cwd()` | Directory to search from |
-| `absolute` | boolean | `false` | Return absolute paths |
-| `dot` | boolean | `false` | Include dotfiles (e.g. `.gitignore`) |
-| `ignore` | string/string[] | `[]` | Patterns to exclude |
-| `nodir` | boolean | `false` | Exclude directories from results |
-| `follow` | boolean | `false` | Follow symlinks |
-| `maxDepth` | number | `Infinity` | Maximum directory depth |
-| `withFileTypes` | boolean | `false` | Return `Path` objects instead of strings |
-| `signal` | AbortSignal | - | Abort signal for cancellation |
-| `stat` | boolean | `false` | Perform stat on entries |
+```js
+// construct a Glob object if you wanna do it that way, which
+// allows for much faster walks if you have to look in the same
+// folder multiple times.
+const g = new Glob('**/foo', {})
+// glob objects are async iterators, can also do globIterate() or
+// g.iterate(), same deal
+```
 
 ## Tips & Gotchas
-- **v10 breaking changes**: The default export changed. Use `import { glob } from 'glob'` (named import) instead of `import glob from 'glob'`.
-- **Double-star `**` matches zero or more directories**: `src/**/*.ts` matches `src/index.ts` as well as `src/utils/helpers.ts`.
-- **Brace expansion**: `{a,b}` expands to match either — `*.{ts,js}` matches both TypeScript and JavaScript files.
-- **Dotfiles excluded by default**: Files starting with `.` are not matched unless you set `dot: true` or use a pattern that starts with `.`.
-- **Ignore patterns use the same glob syntax**: `ignore: ['**/node_modules/**', '**/.git/**']` is a common setup.
-- **Use `nodir: true` for file-only results**: Without it, directories matching the pattern are included in results.
-- **Performance**: For large codebases, use `maxDepth` and specific `cwd` to limit the search scope.
-- **AbortSignal support**: Pass `signal` from an `AbortController` to cancel long-running glob operations.
-- **Trailing slashes match directories only**: `src/*/` will only match directories inside `src/`.
+- The npm package name is _not_ `node-glob` that's a > different thing that was abandoned years ago. Just `glob`.
+- Current version: 13.0.6. Check the changelog when upgrading across major versions.

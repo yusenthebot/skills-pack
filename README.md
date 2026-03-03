@@ -4,7 +4,7 @@
 [![license](https://img.shields.io/npm/l/skills-pack)](./LICENSE)
 [![OpenClaw compatible](https://img.shields.io/badge/OpenClaw-compatible-blue)](https://github.com/nicepkg/openclaw)
 
-> 100 curated SKILL.md files for the most useful npm packages — install in one command
+> SKILL.md files for the **top 100 most downloaded npm packages** — ranked by real npm download stats, generated from actual package documentation
 
 ## Quick Start
 

@@ -1,93 +1,63 @@
 ---
-name: dotenv
+name: "dotenv"
+version: "17.3.1"
+downloads: 405.4M/month
 description: >
-  Load .env files into process.env. Use when: managing environment variables in Node.js, local dev config, keeping secrets out of code. NOT for: production secrets management (use Vault/AWS Secrets Manager), browser environments.
+  Loads environment variables from .env file. Use when: reading and writing files with extras; directory operations; file pattern matching. NOT for: database replacement; network storage without proper SDKs.
 ---
 
 # dotenv
+
+## Overview
+Loads environment variables from .env file. Storing configuration in the environment separate from code is based on The Twelve-Factor App methodology.
 
 ## Installation
 ```bash
 npm install dotenv
 ```
 
-## Core Usage
-
-```ts
-// At the very top of your entry file
-import 'dotenv/config';  // ESM — auto-loads .env
-// or
-import dotenv from 'dotenv';
-dotenv.config();
-
-console.log(process.env.DATABASE_URL);
+## Core API / Usage
+```bash
+npm install dotenv --save
 ```
 
-## .env File Format
-
-```bash
-# .env
-DATABASE_URL=postgresql://user:pass@localhost:5432/mydb
-PORT=3000
-NODE_ENV=development
-SECRET_KEY="my secret with spaces"
-# Comments are ignored
-EMPTY=
-MULTILINE="line1\nline2"
+```js
+And as early as possible in your application, import and configure dotenv:
 ```
 
 ## Common Patterns
+### Pattern 1
 
-### Multiple environments
-```ts
-dotenv.config({ path: `.env.${process.env.NODE_ENV}` });
-// .env.development, .env.staging, .env.production
+```js
+That's it. `process.env` now has the keys and values you defined in your `.env` file:
+
+&nbsp;
+
+## Advanced
+
+<details><summary>ES6</summary><br>
+
+Import with [ES6](#how-do-i-use-dotenv-with-import):
 ```
 
-### Override existing env vars
-```ts
-dotenv.config({ override: true });  // .env values override process.env
+### Pattern 2
+
+```js
+ES6 import if you need to set config options:
 ```
 
-### Custom path
-```ts
-dotenv.config({ path: '/etc/app/.env' });
+### Pattern 3
+
+```js
+</details>
+<details><summary>bun</summary><br>
 ```
 
-### With Zod validation (recommended)
-```ts
-import 'dotenv/config';
-import { z } from 'zod';
-
-const EnvSchema = z.object({
-  DATABASE_URL: z.string().url(),
-  PORT: z.coerce.number().default(3000),
-  NODE_ENV: z.enum(['development', 'production', 'test']).default('development'),
-  SECRET_KEY: z.string().min(32),
-});
-
-export const env = EnvSchema.parse(process.env);
-// env.PORT is number, env.DATABASE_URL is string — fully typed
-```
-
-### dotenv-expand (variable expansion)
-```bash
-npm install dotenv-expand
-```
-```bash
-# .env
-BASE_URL=https://api.example.com
-USERS_URL=${BASE_URL}/users
-```
-```ts
-import dotenvExpand from 'dotenv-expand';
-dotenvExpand.expand(dotenv.config());
+## Configuration
+```js
+And as early as possible in your application, import and configure dotenv:
 ```
 
 ## Tips & Gotchas
-- `.env` should be in `.gitignore` — commit `.env.example` with placeholder values instead
-- `dotenv/config` import (ESM) is the cleanest approach — no need for `dotenv.config()` call
-- Values are always strings — coerce numbers with `parseInt()` or Zod's `z.coerce.number()`
-- In production, set env vars directly (Heroku, Railway, Docker) — don't use dotenv
-- `dotenv.config()` silently does nothing if `.env` doesn't exist (returns `{ parsed: undefined }`)
-- For monorepos, specify the path: `dotenv.config({ path: '../../.env' })`
+- Current version: 17.3.1. Check the changelog when upgrading across major versions.
+- Refer to the official npm page for edge cases and advanced configuration.

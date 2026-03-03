@@ -1,78 +1,38 @@
 ---
-name: nanoid
+name: "nanoid"
+version: "5.1.6"
+downloads: 435.9M/month
 description: >
-  Tiny (118 bytes), secure URL-friendly unique ID generator. Use when: generating IDs for records, tokens, slugs. NOT for: UUIDs with specific RFC format requirements (use uuid), sequential IDs.
+  A tiny (118 bytes), secure URL-friendly unique string ID generator. Use when: Small. 118 bytes (minified and brotlied). No dependencies; Safe. It uses hardware random generator. Can be used in clusters; Short IDs. It uses a larger alphabet than UUID (`A-Za-z0-9_-`). NOT for: server-side CLI utilities; database access layer.
 ---
 
 # nanoid
 
-> v5.1.6 — 118 bytes, crypto-secure, URL-safe
+## Overview
+A tiny (118 bytes), secure URL-friendly unique string ID generator. > “An amazing level of senseless perfectionism, > which is simply impossible not to respect.” Small.
 
 ## Installation
 ```bash
-npm install nanoid  # v5 ESM
-npm install nanoid@3  # CommonJS compatible
+npm install nanoid
 ```
 
-## Core API
-
-```ts
-import { nanoid, customAlphabet, urlAlphabet } from 'nanoid';
-
-// Default: 21 chars, URL-safe alphabet
-nanoid()      // 'V1StGXR8_Z5jdHi6B-myT'
-nanoid(10)    // 'IRFa-VaY2b'
-
-// Custom size
-nanoid(6)    // Short ID: 'abc123'
-
-// Custom alphabet
-const id = customAlphabet('1234567890', 8);
-id()  // '30490912'
-
-const shortId = customAlphabet('abcdefghijklmnopqrstuvwxyz', 6);
-shortId()  // 'mxynoz'
+## Core API / Usage
+```js
+import { nanoid } from 'nanoid'
+model.id = nanoid() //=> "V1StGXR8_Z5jdHi6B-myT"
 ```
 
 ## Common Patterns
+### Key Features
 
-### DB record IDs
-```ts
-import { nanoid } from 'nanoid';
+- **Small. 118 bytes (minified and brotlied). No dependencies.**
+- **Safe. It uses hardware random generator. Can be used in clusters.**
+- **Short IDs. It uses a larger alphabet than UUID (`A-Za-z0-9_-`).**
+- **Portable. Nano ID was ported**
 
-const post = {
-  id: nanoid(),  // primary key
-  title: 'Hello World',
-};
-```
-
-### Short URL slugs
-```ts
-const slug = customAlphabet('abcdefghijklmnopqrstuvwxyz0123456789', 8);
-const url = `https://short.ly/${slug()}`;  // 'https://short.ly/abc1def2'
-```
-
-### Session tokens
-```ts
-const token = nanoid(32);  // 32-char cryptographically secure token
-```
-
-### Non-secure (faster)
-```ts
-import { nanoid } from 'nanoid/non-secure';  // no crypto, faster, not for security
-```
-
-## Collision Probability
-
-| Size | ~Hours for 1% collision probability at 1000 IDs/hr |
-|------|-----------------------------------------------------|
-| 8    | 1 hour                                              |
-| 13   | 3 years                                             |
-| 21   | 2 million years (default)                           |
+## Configuration
+See the [official documentation](https://www.npmjs.com/package/nanoid) for configuration options and advanced settings.
 
 ## Tips & Gotchas
-- nanoid v5 is ESM-only — use v3 for CommonJS
-- Default 21-char ID has 126 bits of randomness — extremely collision resistant
-- `customAlphabet` returns a **function** — call it to generate IDs
-- Uses `crypto.randomInt()` internally — safe for security tokens
-- URL-safe: no `+`, `/`, `=` — safe in URLs without encoding
+- Current version: 5.1.6. Check the changelog when upgrading across major versions.
+- Refer to the official npm page for edge cases and advanced configuration.

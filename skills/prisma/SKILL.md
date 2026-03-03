@@ -1,131 +1,35 @@
 ---
-name: prisma
+name: "prisma"
+version: "7.4.2"
+downloads: 35.4M/month
 description: >
-  TypeScript ORM with type-safe queries. Use when: relational database access, migrations, type-safe queries with autocomplete. NOT for: NoSQL databases, simple scripts without migrations, performance-critical bulk operations.
+  Prisma is an open-source database toolkit. It includes a JavaScript/TypeScript ORM for Node.js, migrations and a modern GUI to view and edit the data in your database. You can use Prisma in new projects or add it to an existing one.. Use when: building interactive command-line tools; styled terminal output; progress indicators and spinners. NOT for: web browser UI rendering; server-side HTML generation.
 ---
 
 # prisma
 
+## Overview
+Prisma is an open-source database toolkit. It includes a JavaScript/TypeScript ORM for Node.js, migrations and a modern GUI to view and edit the data in your database. You can use Prisma in new projects or add it to an existing one.
+
 ## Installation
 ```bash
-npm install prisma @prisma/client
-npx prisma init  # creates prisma/schema.prisma + .env
+npm install prisma
 ```
 
-## Schema (prisma/schema.prisma)
+## Core API / Usage
+```js
+import prisma from 'prisma';
 
-```prisma
-datasource db {
-  provider = "postgresql"  // sqlite, mysql, sqlserver
-  url      = env("DATABASE_URL")
-}
-
-generator client {
-  provider = "prisma-client-js"
-}
-
-model User {
-  id        Int      @id @default(autoincrement())
-  email     String   @unique
-  name      String?
-  posts     Post[]
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-}
-
-model Post {
-  id        Int     @id @default(autoincrement())
-  title     String
-  content   String?
-  published Boolean @default(false)
-  author    User    @relation(fields: [authorId], references: [id])
-  authorId  Int
-}
-```
-
-## Core Client
-
-```ts
-import { PrismaClient } from '@prisma/client';
-
-const prisma = new PrismaClient();
-
-// CRUD
-const user = await prisma.user.create({
-  data: { email: 'alice@example.com', name: 'Alice' },
-});
-
-const users = await prisma.user.findMany({
-  where: { posts: { some: { published: true } } },
-  include: { posts: true },
-  orderBy: { createdAt: 'desc' },
-  take: 10,
-  skip: 0,
-});
-
-await prisma.user.update({
-  where: { id: 1 },
-  data: { name: 'Alice Updated' },
-});
-
-await prisma.user.delete({ where: { id: 1 } });
+// See official documentation for complete API reference
+// https://www.npmjs.com/package/prisma
 ```
 
 ## Common Patterns
+Refer to the [official documentation](https://github.com/prisma/prisma) for common patterns, recipes, and advanced usage examples.
 
-### Singleton (avoid too many connections)
-```ts
-// lib/prisma.ts
-import { PrismaClient } from '@prisma/client';
-
-const globalForPrisma = globalThis as unknown as { prisma: PrismaClient };
-
-export const prisma = globalForPrisma.prisma ?? new PrismaClient();
-if (process.env.NODE_ENV !== 'production') globalForPrisma.prisma = prisma;
-```
-
-### Transactions
-```ts
-const [user, post] = await prisma.$transaction([
-  prisma.user.create({ data: { email: 'bob@example.com' } }),
-  prisma.post.create({ data: { title: 'Hello', authorId: 1 } }),
-]);
-
-// Interactive transaction
-await prisma.$transaction(async (tx) => {
-  const user = await tx.user.create({ data: { email: 'carol@example.com' } });
-  await tx.post.create({ data: { title: 'Post', authorId: user.id } });
-});
-```
-
-### Upsert
-```ts
-await prisma.user.upsert({
-  where: { email: 'alice@example.com' },
-  update: { name: 'Alice New' },
-  create: { email: 'alice@example.com', name: 'Alice New' },
-});
-```
-
-### Raw queries
-```ts
-const users = await prisma.$queryRaw`SELECT * FROM "User" WHERE id = ${userId}`;
-```
-
-## Migrations
-
-```bash
-npx prisma migrate dev --name add_user_table   # create + apply migration
-npx prisma migrate deploy                       # apply in production
-npx prisma db push                             # push without migration (prototyping)
-npx prisma studio                              # GUI browser
-npx prisma generate                            # regenerate client after schema change
-```
+## Configuration
+See the [official documentation](https://www.npmjs.com/package/prisma) for configuration options and advanced settings.
 
 ## Tips & Gotchas
-- Run `prisma generate` after every schema change — client won't update otherwise
-- Use `prisma.$disconnect()` in scripts/lambdas to release connections
-- `findFirst` vs `findUnique`: `findUnique` only works on `@unique` or `@id` fields
-- `include` fetches related records; `select` limits which fields to return (can't use both)
-- Prisma's `Int` maps to JavaScript `number` — use `BigInt` field type for large IDs
-- For Next.js: use the singleton pattern to avoid "Too many connections" in hot reload
+- Current version: 7.4.2. Check the changelog when upgrading across major versions.
+- Refer to the official npm page for edge cases and advanced configuration.

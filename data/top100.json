@@ -1,113 +1,1351 @@
 [
-  { "name": "commander", "category": "CLI tools", "description": "Complete solution for node.js command-line interfaces", "npmUrl": "https://www.npmjs.com/package/commander", "version": "latest" },
-  { "name": "chalk", "category": "CLI tools", "description": "Terminal string styling done right", "npmUrl": "https://www.npmjs.com/package/chalk", "version": "latest" },
-  { "name": "ora", "category": "CLI tools", "description": "Elegant terminal spinners", "npmUrl": "https://www.npmjs.com/package/ora", "version": "latest" },
-  { "name": "inquirer", "category": "CLI tools", "description": "Collection of common interactive command-line user interfaces", "npmUrl": "https://www.npmjs.com/package/inquirer", "version": "latest" },
-  { "name": "yargs", "category": "CLI tools", "description": "Yargs helps you build interactive command-line tools", "npmUrl": "https://www.npmjs.com/package/yargs", "version": "latest" },
-  { "name": "execa", "category": "CLI tools", "description": "Process execution for humans", "npmUrl": "https://www.npmjs.com/package/execa", "version": "latest" },
-  { "name": "boxen", "category": "CLI tools", "description": "Create boxes in the terminal", "npmUrl": "https://www.npmjs.com/package/boxen", "version": "latest" },
-  { "name": "figlet", "category": "CLI tools", "description": "Creates ASCII art from text", "npmUrl": "https://www.npmjs.com/package/figlet", "version": "latest" },
-  { "name": "gradient-string", "category": "CLI tools", "description": "Beautiful color gradients in terminal output", "npmUrl": "https://www.npmjs.com/package/gradient-string", "version": "latest" },
-  { "name": "cli-table3", "category": "CLI tools", "description": "Pretty unicode tables for the command line", "npmUrl": "https://www.npmjs.com/package/cli-table3", "version": "latest" },
-  { "name": "listr2", "category": "CLI tools", "description": "Terminal task list with support for concurrent tasks", "npmUrl": "https://www.npmjs.com/package/listr2", "version": "latest" },
-  { "name": "terminal-link", "category": "CLI tools", "description": "Create clickable links in the terminal", "npmUrl": "https://www.npmjs.com/package/terminal-link", "version": "latest" },
-
-  { "name": "axios", "category": "HTTP/API", "description": "Promise-based HTTP client for the browser and Node.js", "npmUrl": "https://www.npmjs.com/package/axios", "version": "latest" },
-  { "name": "got", "category": "HTTP/API", "description": "Human-friendly and powerful HTTP request library", "npmUrl": "https://www.npmjs.com/package/got", "version": "latest" },
-  { "name": "node-fetch", "category": "HTTP/API", "description": "A light-weight module that brings Fetch API to Node.js", "npmUrl": "https://www.npmjs.com/package/node-fetch", "version": "latest" },
-  { "name": "ky", "category": "HTTP/API", "description": "Tiny and elegant HTTP client based on Fetch API", "npmUrl": "https://www.npmjs.com/package/ky", "version": "latest" },
-  { "name": "undici", "category": "HTTP/API", "description": "An HTTP/1.1 client written from scratch for Node.js", "npmUrl": "https://www.npmjs.com/package/undici", "version": "latest" },
-  { "name": "superagent", "category": "HTTP/API", "description": "Elegant and feature-rich browser/Node HTTP with a fluent API", "npmUrl": "https://www.npmjs.com/package/superagent", "version": "latest" },
-  { "name": "wretch", "category": "HTTP/API", "description": "A tiny wrapper built around fetch with intuitive syntax", "npmUrl": "https://www.npmjs.com/package/wretch", "version": "latest" },
-  { "name": "ofetch", "category": "HTTP/API", "description": "Better fetch API for Node.js, browsers and workers", "npmUrl": "https://www.npmjs.com/package/ofetch", "version": "latest" },
-
-  { "name": "zod", "category": "Validation", "description": "TypeScript-first schema validation with static type inference", "npmUrl": "https://www.npmjs.com/package/zod", "version": "latest" },
-  { "name": "joi", "category": "Validation", "description": "Object schema validation", "npmUrl": "https://www.npmjs.com/package/joi", "version": "latest" },
-  { "name": "yup", "category": "Validation", "description": "Dead simple object schema validation", "npmUrl": "https://www.npmjs.com/package/yup", "version": "latest" },
-  { "name": "valibot", "category": "Validation", "description": "Modular and type-safe schema library for validating structural data", "npmUrl": "https://www.npmjs.com/package/valibot", "version": "latest" },
-  { "name": "arktype", "category": "Validation", "description": "TypeScript's 1:1 validator, optimized from editor to runtime", "npmUrl": "https://www.npmjs.com/package/arktype", "version": "latest" },
-  { "name": "@sinclair/typebox", "category": "Validation", "description": "JSON Schema Type Builder with static type resolution for TypeScript", "npmUrl": "https://www.npmjs.com/package/@sinclair/typebox", "version": "latest" },
-
-  { "name": "prisma", "category": "Database/ORM", "description": "Next-generation Node.js and TypeScript ORM", "npmUrl": "https://www.npmjs.com/package/prisma", "version": "latest" },
-  { "name": "drizzle-orm", "category": "Database/ORM", "description": "Lightweight TypeScript ORM with SQL-like query builder", "npmUrl": "https://www.npmjs.com/package/drizzle-orm", "version": "latest" },
-  { "name": "mongoose", "category": "Database/ORM", "description": "MongoDB object modeling designed to work in an asynchronous environment", "npmUrl": "https://www.npmjs.com/package/mongoose", "version": "latest" },
-  { "name": "ioredis", "category": "Database/ORM", "description": "Robust, full-featured Redis client for Node.js", "npmUrl": "https://www.npmjs.com/package/ioredis", "version": "latest" },
-  { "name": "pg", "category": "Database/ORM", "description": "PostgreSQL client for Node.js", "npmUrl": "https://www.npmjs.com/package/pg", "version": "latest" },
-  { "name": "mysql2", "category": "Database/ORM", "description": "Fast MySQL driver for Node.js with focus on performance", "npmUrl": "https://www.npmjs.com/package/mysql2", "version": "latest" },
-  { "name": "better-sqlite3", "category": "Database/ORM", "description": "The fastest and simplest library for SQLite3 in Node.js", "npmUrl": "https://www.npmjs.com/package/better-sqlite3", "version": "latest" },
-  { "name": "typeorm", "category": "Database/ORM", "description": "Data-mapper ORM for TypeScript and JavaScript", "npmUrl": "https://www.npmjs.com/package/typeorm", "version": "latest" },
-
-  { "name": "vitest", "category": "Testing", "description": "Next generation testing framework powered by Vite", "npmUrl": "https://www.npmjs.com/package/vitest", "version": "latest" },
-  { "name": "jest", "category": "Testing", "description": "Delightful JavaScript testing framework", "npmUrl": "https://www.npmjs.com/package/jest", "version": "latest" },
-  { "name": "playwright", "category": "Testing", "description": "Library to automate Chromium, Firefox and WebKit with a single API", "npmUrl": "https://www.npmjs.com/package/playwright", "version": "latest" },
-  { "name": "supertest", "category": "Testing", "description": "HTTP assertions library for testing Node.js servers", "npmUrl": "https://www.npmjs.com/package/supertest", "version": "latest" },
-  { "name": "msw", "category": "Testing", "description": "Seamless REST/GraphQL API mocking library for browser and Node.js", "npmUrl": "https://www.npmjs.com/package/msw", "version": "latest" },
-  { "name": "nock", "category": "Testing", "description": "HTTP server mocking and expectations library for Node.js", "npmUrl": "https://www.npmjs.com/package/nock", "version": "latest" },
-  { "name": "@faker-js/faker", "category": "Testing", "description": "Generate massive amounts of fake contextual data", "npmUrl": "https://www.npmjs.com/package/@faker-js/faker", "version": "latest" },
-  { "name": "sinon", "category": "Testing", "description": "Test spies, stubs and mocks for JavaScript", "npmUrl": "https://www.npmjs.com/package/sinon", "version": "latest" },
-
-  { "name": "vite", "category": "Build tools", "description": "Next generation frontend tooling", "npmUrl": "https://www.npmjs.com/package/vite", "version": "latest" },
-  { "name": "esbuild", "category": "Build tools", "description": "An extremely fast JavaScript bundler and minifier", "npmUrl": "https://www.npmjs.com/package/esbuild", "version": "latest" },
-  { "name": "tsup", "category": "Build tools", "description": "Bundle your TypeScript library with no config", "npmUrl": "https://www.npmjs.com/package/tsup", "version": "latest" },
-  { "name": "rollup", "category": "Build tools", "description": "Next-generation ES module bundler", "npmUrl": "https://www.npmjs.com/package/rollup", "version": "latest" },
-  { "name": "turbo", "category": "Build tools", "description": "Incremental bundler and build system for JavaScript and TypeScript", "npmUrl": "https://www.npmjs.com/package/turbo", "version": "latest" },
-  { "name": "nx", "category": "Build tools", "description": "Smart monorepo build system with first-class support for many frontend and backend technologies", "npmUrl": "https://www.npmjs.com/package/nx", "version": "latest" },
-  { "name": "unbuild", "category": "Build tools", "description": "Unified JavaScript build system", "npmUrl": "https://www.npmjs.com/package/unbuild", "version": "latest" },
-  { "name": "bunchee", "category": "Build tools", "description": "Zero config bundler for ECMAScript and TypeScript packages", "npmUrl": "https://www.npmjs.com/package/bunchee", "version": "latest" },
-
-  { "name": "openai", "category": "AI SDK", "description": "Official OpenAI API client for Node.js", "npmUrl": "https://www.npmjs.com/package/openai", "version": "latest" },
-  { "name": "@anthropic-ai/sdk", "category": "AI SDK", "description": "Official Anthropic SDK for TypeScript and JavaScript", "npmUrl": "https://www.npmjs.com/package/@anthropic-ai/sdk", "version": "latest" },
-  { "name": "ai", "category": "AI SDK", "description": "Vercel AI SDK for building AI-powered applications", "npmUrl": "https://www.npmjs.com/package/ai", "version": "latest" },
-  { "name": "@google/generative-ai", "category": "AI SDK", "description": "Google Generative AI SDK for JavaScript and TypeScript", "npmUrl": "https://www.npmjs.com/package/@google/generative-ai", "version": "latest" },
-  { "name": "ollama", "category": "AI SDK", "description": "Ollama JavaScript library for running local LLMs", "npmUrl": "https://www.npmjs.com/package/ollama", "version": "latest" },
-  { "name": "replicate", "category": "AI SDK", "description": "JavaScript client for Replicate", "npmUrl": "https://www.npmjs.com/package/replicate", "version": "latest" },
-
-  { "name": "fs-extra", "category": "File/Path", "description": "Extra methods for the fs module", "npmUrl": "https://www.npmjs.com/package/fs-extra", "version": "latest" },
-  { "name": "glob", "category": "File/Path", "description": "Match files using glob patterns", "npmUrl": "https://www.npmjs.com/package/glob", "version": "latest" },
-  { "name": "chokidar", "category": "File/Path", "description": "Efficient cross-platform file watching library", "npmUrl": "https://www.npmjs.com/package/chokidar", "version": "latest" },
-  { "name": "archiver", "category": "File/Path", "description": "Streaming interface for archive generation", "npmUrl": "https://www.npmjs.com/package/archiver", "version": "latest" },
-  { "name": "sharp", "category": "File/Path", "description": "High performance Node.js image processing", "npmUrl": "https://www.npmjs.com/package/sharp", "version": "latest" },
-  { "name": "pdf-lib", "category": "File/Path", "description": "Create and modify PDF documents in any JavaScript environment", "npmUrl": "https://www.npmjs.com/package/pdf-lib", "version": "latest" },
-
-  { "name": "date-fns", "category": "Date/Util", "description": "Modern JavaScript date utility library", "npmUrl": "https://www.npmjs.com/package/date-fns", "version": "latest" },
-  { "name": "dayjs", "category": "Date/Util", "description": "2kB immutable date-time library alternative to Moment.js", "npmUrl": "https://www.npmjs.com/package/dayjs", "version": "latest" },
-  { "name": "lodash", "category": "Date/Util", "description": "Modern JavaScript utility library delivering modularity and performance", "npmUrl": "https://www.npmjs.com/package/lodash", "version": "latest" },
-  { "name": "ramda", "category": "Date/Util", "description": "Practical functional library for JavaScript", "npmUrl": "https://www.npmjs.com/package/ramda", "version": "latest" },
-  { "name": "mathjs", "category": "Date/Util", "description": "Extensive math library for JavaScript and Node.js", "npmUrl": "https://www.npmjs.com/package/mathjs", "version": "latest" },
-  { "name": "decimal.js", "category": "Date/Util", "description": "Arbitrary-precision Decimal type for JavaScript", "npmUrl": "https://www.npmjs.com/package/decimal.js", "version": "latest" },
-  { "name": "nanoid", "category": "Date/Util", "description": "Tiny, secure, URL-friendly unique string ID generator", "npmUrl": "https://www.npmjs.com/package/nanoid", "version": "latest" },
-  { "name": "uuid", "category": "Date/Util", "description": "RFC-compliant UUID generation", "npmUrl": "https://www.npmjs.com/package/uuid", "version": "latest" },
-
-  { "name": "shelljs", "category": "Process/System", "description": "Portable Unix shell commands for Node.js", "npmUrl": "https://www.npmjs.com/package/shelljs", "version": "latest" },
-  { "name": "dotenv", "category": "Process/System", "description": "Loads environment variables from .env file", "npmUrl": "https://www.npmjs.com/package/dotenv", "version": "latest" },
-  { "name": "cross-env", "category": "Process/System", "description": "Run scripts that set environment variables across platforms", "npmUrl": "https://www.npmjs.com/package/cross-env", "version": "latest" },
-  { "name": "pm2", "category": "Process/System", "description": "Production process manager for Node.js with built-in load balancer", "npmUrl": "https://www.npmjs.com/package/pm2", "version": "latest" },
-  { "name": "nodemon", "category": "Process/System", "description": "Monitor for changes and automatically restart your Node.js server", "npmUrl": "https://www.npmjs.com/package/nodemon", "version": "latest" },
-  { "name": "concurrently", "category": "Process/System", "description": "Run multiple commands concurrently", "npmUrl": "https://www.npmjs.com/package/concurrently", "version": "latest" },
-
-  { "name": "express", "category": "Server framework", "description": "Fast, unopinionated, minimalist web framework for Node.js", "npmUrl": "https://www.npmjs.com/package/express", "version": "latest" },
-  { "name": "fastify", "category": "Server framework", "description": "Fast and low overhead web framework for Node.js", "npmUrl": "https://www.npmjs.com/package/fastify", "version": "latest" },
-  { "name": "hono", "category": "Server framework", "description": "Ultrafast web framework for the edges", "npmUrl": "https://www.npmjs.com/package/hono", "version": "latest" },
-  { "name": "koa", "category": "Server framework", "description": "Expressive HTTP middleware framework for Node.js", "npmUrl": "https://www.npmjs.com/package/koa", "version": "latest" },
-  { "name": "@nestjs/core", "category": "Server framework", "description": "Progressive Node.js framework for building server-side applications", "npmUrl": "https://www.npmjs.com/package/@nestjs/core", "version": "latest" },
-  { "name": "@trpc/server", "category": "Server framework", "description": "End-to-end typesafe APIs made easy", "npmUrl": "https://www.npmjs.com/package/@trpc/server", "version": "latest" },
-  { "name": "h3", "category": "Server framework", "description": "Minimal H(TTP) framework built for high performance", "npmUrl": "https://www.npmjs.com/package/h3", "version": "latest" },
-  { "name": "elysia", "category": "Server framework", "description": "Ergonomic framework for humans with end-to-end type safety", "npmUrl": "https://www.npmjs.com/package/elysia", "version": "latest" },
-  { "name": "polka", "category": "Server framework", "description": "Micro web server so fast it nearly matches native Node.js", "npmUrl": "https://www.npmjs.com/package/polka", "version": "latest" },
-  { "name": "restify", "category": "Server framework", "description": "Framework for building REST APIs in Node.js", "npmUrl": "https://www.npmjs.com/package/restify", "version": "latest" },
-
-  { "name": "typescript", "category": "Dev tools", "description": "TypeScript language and compiler", "npmUrl": "https://www.npmjs.com/package/typescript", "version": "latest" },
-  { "name": "eslint", "category": "Dev tools", "description": "Pluggable linting utility for JavaScript and TypeScript", "npmUrl": "https://www.npmjs.com/package/eslint", "version": "latest" },
-  { "name": "prettier", "category": "Dev tools", "description": "Opinionated code formatter", "npmUrl": "https://www.npmjs.com/package/prettier", "version": "latest" },
-  { "name": "husky", "category": "Dev tools", "description": "Modern native Git hooks made easy", "npmUrl": "https://www.npmjs.com/package/husky", "version": "latest" },
-  { "name": "lint-staged", "category": "Dev tools", "description": "Run linters on git staged files", "npmUrl": "https://www.npmjs.com/package/lint-staged", "version": "latest" },
-  { "name": "changelogen", "category": "Dev tools", "description": "Generate changelogs from conventional commits", "npmUrl": "https://www.npmjs.com/package/changelogen", "version": "latest" },
-  { "name": "bumpp", "category": "Dev tools", "description": "Interactive CLI that bumps your version numbers", "npmUrl": "https://www.npmjs.com/package/bumpp", "version": "latest" },
-  { "name": "release-it", "category": "Dev tools", "description": "Automate versioning and package publishing", "npmUrl": "https://www.npmjs.com/package/release-it", "version": "latest" },
-  { "name": "tsconfig-paths", "category": "Dev tools", "description": "Load modules according to tsconfig paths", "npmUrl": "https://www.npmjs.com/package/tsconfig-paths", "version": "latest" },
-  { "name": "tsx", "category": "Dev tools", "description": "TypeScript Execute — Node.js enhanced to run TypeScript and ESM", "npmUrl": "https://www.npmjs.com/package/tsx", "version": "latest" },
-  { "name": "jiti", "category": "Dev tools", "description": "Runtime TypeScript and ESM support for Node.js", "npmUrl": "https://www.npmjs.com/package/jiti", "version": "latest" },
-  { "name": "depcheck", "category": "Dev tools", "description": "Check for unused and missing dependencies", "npmUrl": "https://www.npmjs.com/package/depcheck", "version": "latest" },
-  { "name": "knip", "category": "Dev tools", "description": "Find unused files, dependencies and exports in your project", "npmUrl": "https://www.npmjs.com/package/knip", "version": "latest" },
-  { "name": "publint", "category": "Dev tools", "description": "Lint packaging errors in npm packages", "npmUrl": "https://www.npmjs.com/package/publint", "version": "latest" }
+  {
+    "name": "chalk",
+    "downloads": 1696303256,
+    "version": "5.6.2",
+    "description": "Terminal string styling done right",
+    "keywords": [
+      "color",
+      "colour",
+      "colors",
+      "terminal",
+      "console",
+      "cli",
+      "string",
+      "ansi",
+      "style",
+      "styles"
+    ]
+  },
+  {
+    "name": "commander",
+    "downloads": 1224859422,
+    "version": "14.0.3",
+    "description": "the complete solution for node.js command-line programs",
+    "keywords": [
+      "commander",
+      "command",
+      "option",
+      "parser",
+      "cli",
+      "argument",
+      "args",
+      "argv"
+    ]
+  },
+  {
+    "name": "glob",
+    "downloads": 1177332663,
+    "version": "13.0.6",
+    "description": "the most correct and second fastest glob implementation in JavaScript",
+    "keywords": []
+  },
+  {
+    "name": "uuid",
+    "downloads": 877480328,
+    "version": "13.0.0",
+    "description": "RFC9562 UUIDs",
+    "keywords": [
+      "uuid",
+      "guid",
+      "rfc4122",
+      "rfc9562"
+    ]
+  },
+  {
+    "name": "ws",
+    "downloads": 658913444,
+    "version": "8.19.0",
+    "description": "Simple to use, blazing fast and thoroughly tested websocket client and server for Node.js",
+    "keywords": [
+      "HyBi",
+      "Push",
+      "RFC-6455",
+      "WebSocket",
+      "WebSockets",
+      "real-time"
+    ]
+  },
+  {
+    "name": "yargs",
+    "downloads": 647125925,
+    "version": "18.0.0",
+    "description": "yargs the modern, pirate-themed, successor to optimist.",
+    "keywords": [
+      "argument",
+      "args",
+      "option",
+      "parser",
+      "parsing",
+      "cli",
+      "command"
+    ]
+  },
+  {
+    "name": "postcss",
+    "downloads": 626887858,
+    "version": "8.5.8",
+    "description": "Tool for transforming styles with JS plugins",
+    "keywords": [
+      "css",
+      "postcss",
+      "rework",
+      "preprocessor",
+      "parser",
+      "source map",
+      "transform",
+      "manipulation",
+      "transpiler"
+    ]
+  },
+  {
+    "name": "fs-extra",
+    "downloads": 612206313,
+    "version": "11.3.4",
+    "description": "fs-extra contains methods that aren't included in the vanilla Node.js fs package. Such as recursive mkdir, copy, and remove.",
+    "keywords": [
+      "fs",
+      "file",
+      "file system",
+      "copy",
+      "directory",
+      "extra",
+      "mkdirp",
+      "mkdir",
+      "mkdirs",
+      "recursive"
+    ]
+  },
+  {
+    "name": "execa",
+    "downloads": 536262463,
+    "version": "9.6.1",
+    "description": "Process execution for humans",
+    "keywords": [
+      "exec",
+      "child",
+      "process",
+      "subprocess",
+      "execute",
+      "fork",
+      "execfile",
+      "spawn",
+      "file",
+      "shell"
+    ]
+  },
+  {
+    "name": "typescript",
+    "downloads": 530435529,
+    "version": "5.9.3",
+    "description": "TypeScript is a language for application scale JavaScript development",
+    "keywords": [
+      "TypeScript",
+      "Microsoft",
+      "compiler",
+      "language",
+      "javascript"
+    ]
+  },
+  {
+    "name": "chokidar",
+    "downloads": 498237256,
+    "version": "5.0.0",
+    "description": "Minimal and efficient cross-platform file watching library",
+    "keywords": [
+      "fs",
+      "watch",
+      "watchFile",
+      "watcher",
+      "watching",
+      "file",
+      "fsevents"
+    ]
+  },
+  {
+    "name": "@babel/core",
+    "downloads": 461484407,
+    "version": "7.29.0",
+    "description": "Babel compiler core.",
+    "keywords": [
+      "6to5",
+      "babel",
+      "classes",
+      "const",
+      "es6",
+      "harmony",
+      "let",
+      "modules",
+      "transpile",
+      "transpiler"
+    ]
+  },
+  {
+    "name": "lodash",
+    "downloads": 459232850,
+    "version": "4.17.23",
+    "description": "Lodash modular utilities.",
+    "keywords": [
+      "modules",
+      "stdlib",
+      "util"
+    ]
+  },
+  {
+    "name": "node-fetch",
+    "downloads": 453282176,
+    "version": "3.3.2",
+    "description": "A light-weight module that brings Fetch API to node.js",
+    "keywords": [
+      "fetch",
+      "http",
+      "promise",
+      "request",
+      "curl",
+      "wget",
+      "xhr",
+      "whatwg"
+    ]
+  },
+  {
+    "name": "nanoid",
+    "downloads": 435890799,
+    "version": "5.1.6",
+    "description": "A tiny (118 bytes), secure URL-friendly unique string ID generator",
+    "keywords": [
+      "uuid",
+      "random",
+      "id",
+      "url"
+    ]
+  },
+  {
+    "name": "dotenv",
+    "downloads": 405375434,
+    "version": "17.3.1",
+    "description": "Loads environment variables from .env file",
+    "keywords": [
+      "dotenv",
+      "env",
+      ".env",
+      "environment",
+      "variables",
+      "config",
+      "settings"
+    ]
+  },
+  {
+    "name": "zod",
+    "downloads": 395329874,
+    "version": "4.3.6",
+    "description": "TypeScript-first schema declaration and validation library with static type inference",
+    "keywords": [
+      "typescript",
+      "schema",
+      "validation",
+      "type",
+      "inference"
+    ]
+  },
+  {
+    "name": "eslint",
+    "downloads": 383351755,
+    "version": "10.0.2",
+    "description": "An AST-based pattern checker for JavaScript.",
+    "keywords": [
+      "ast",
+      "lint",
+      "javascript",
+      "ecmascript",
+      "espree"
+    ]
+  },
+  {
+    "name": "axios",
+    "downloads": 379956433,
+    "version": "1.13.6",
+    "description": "Promise based HTTP client for the browser and node.js",
+    "keywords": [
+      "xhr",
+      "http",
+      "ajax",
+      "promise",
+      "node",
+      "browser",
+      "fetch",
+      "rest",
+      "api",
+      "client"
+    ]
+  },
+  {
+    "name": "@sinclair/typebox",
+    "downloads": 366692842,
+    "version": "0.34.48",
+    "description": "Json Schema Type Builder with Static Type Resolution for TypeScript",
+    "keywords": [
+      "typescript",
+      "json-schema",
+      "validate",
+      "typecheck"
+    ]
+  },
+  {
+    "name": "react",
+    "downloads": 357509943,
+    "version": "19.2.4",
+    "description": "React is a JavaScript library for building user interfaces.",
+    "keywords": [
+      "react"
+    ]
+  },
+  {
+    "name": "async",
+    "downloads": 331620064,
+    "version": "3.2.6",
+    "description": "Higher-order functions and common patterns for asynchronous code",
+    "keywords": [
+      "async",
+      "callback",
+      "module",
+      "utility"
+    ]
+  },
+  {
+    "name": "body-parser",
+    "downloads": 318679213,
+    "version": "2.2.2",
+    "description": "Node.js body parsing middleware",
+    "keywords": []
+  },
+  {
+    "name": "prettier",
+    "downloads": 305429454,
+    "version": "3.8.1",
+    "description": "Prettier is an opinionated code formatter",
+    "keywords": []
+  },
+  {
+    "name": "express",
+    "downloads": 303866110,
+    "version": "5.2.1",
+    "description": "Fast, unopinionated, minimalist web framework",
+    "keywords": [
+      "express",
+      "framework",
+      "sinatra",
+      "web",
+      "http",
+      "rest",
+      "restful",
+      "router",
+      "app",
+      "api"
+    ]
+  },
+  {
+    "name": "p-map",
+    "downloads": 271442771,
+    "version": "7.0.4",
+    "description": "Map over promises concurrently",
+    "keywords": [
+      "promise",
+      "map",
+      "resolved",
+      "wait",
+      "collection",
+      "iterable",
+      "iterator",
+      "race",
+      "fulfilled",
+      "async"
+    ]
+  },
+  {
+    "name": "vite",
+    "downloads": 264173792,
+    "version": "7.3.1",
+    "description": "Native-ESM powered web dev build tool",
+    "keywords": [
+      "frontend",
+      "framework",
+      "hmr",
+      "dev-server",
+      "build-tool",
+      "vite"
+    ]
+  },
+  {
+    "name": "tsconfig-paths",
+    "downloads": 263487007,
+    "version": "4.2.0",
+    "description": "Load node modules according to tsconfig paths, in run-time or via API.",
+    "keywords": []
+  },
+  {
+    "name": "ora",
+    "downloads": 237070173,
+    "version": "9.3.0",
+    "description": "Elegant terminal spinner",
+    "keywords": [
+      "cli",
+      "spinner",
+      "spinners",
+      "terminal",
+      "term",
+      "console",
+      "ascii",
+      "unicode",
+      "loading",
+      "indicator"
+    ]
+  },
+  {
+    "name": "kleur",
+    "downloads": 211090274,
+    "version": "4.1.5",
+    "description": "The fastest Node.js library for formatting terminal text with ANSI colors~!",
+    "keywords": [
+      "ansi",
+      "cli",
+      "color",
+      "colors",
+      "console",
+      "terminal"
+    ]
+  },
+  {
+    "name": "date-fns",
+    "downloads": 196234868,
+    "version": "4.1.0",
+    "description": "Modern JavaScript date utility library",
+    "keywords": []
+  },
+  {
+    "name": "autoprefixer",
+    "downloads": 180624115,
+    "version": "10.4.27",
+    "description": "Parse CSS and add vendor prefixes to CSS rules using values from the Can I Use website",
+    "keywords": [
+      "autoprefixer",
+      "css",
+      "prefix",
+      "postcss",
+      "postcss-plugin"
+    ]
+  },
+  {
+    "name": "inquirer",
+    "downloads": 177834085,
+    "version": "13.3.0",
+    "description": "A collection of common interactive command line user interfaces.",
+    "keywords": [
+      "answer",
+      "answers",
+      "ask",
+      "base",
+      "cli",
+      "command",
+      "command-line",
+      "confirm",
+      "enquirer",
+      "generate"
+    ]
+  },
+  {
+    "name": "jose",
+    "downloads": 173601336,
+    "version": "6.1.3",
+    "description": "JWA, JWS, JWE, JWT, JWK, JWKS for Node.js, Browser, Cloudflare Workers, Deno, Bun, and other Web-interoperable runtimes",
+    "keywords": [
+      "akp",
+      "browser",
+      "bun",
+      "cloudflare",
+      "compact",
+      "decode",
+      "decrypt",
+      "deno",
+      "detached",
+      "ec"
+    ]
+  },
+  {
+    "name": "jest",
+    "downloads": 166781478,
+    "version": "30.2.0",
+    "description": "Delightful JavaScript Testing.",
+    "keywords": [
+      "ava",
+      "babel",
+      "coverage",
+      "easy",
+      "expect",
+      "facebook",
+      "immersive",
+      "instant",
+      "jasmine",
+      "jest"
+    ]
+  },
+  {
+    "name": "webpack",
+    "downloads": 165872777,
+    "version": "5.105.4",
+    "description": "Packs ECMAScript/CommonJs/AMD modules for the browser. Allows you to split your codebase into multiple bundles, which can be loaded on demand. Supports loaders to preprocess files, i.e. json, jsx, es7, css, less, ... and your custom stuff.",
+    "keywords": []
+  },
+  {
+    "name": "dayjs",
+    "downloads": 155570503,
+    "version": "1.11.19",
+    "description": "2KB immutable date time library alternative to Moment.js with the same modern API ",
+    "keywords": [
+      "dayjs",
+      "date",
+      "time",
+      "immutable",
+      "moment"
+    ]
+  },
+  {
+    "name": "cors",
+    "downloads": 154936536,
+    "version": "2.8.6",
+    "description": "Node.js CORS middleware",
+    "keywords": [
+      "cors",
+      "express",
+      "connect",
+      "middleware"
+    ]
+  },
+  {
+    "name": "sharp",
+    "downloads": 154853256,
+    "version": "0.34.5",
+    "description": "High performance Node.js image processing, the fastest module to resize JPEG, PNG, WebP, GIF, AVIF and TIFF images",
+    "keywords": [
+      "jpeg",
+      "png",
+      "webp",
+      "avif",
+      "tiff",
+      "gif",
+      "svg",
+      "jp2",
+      "dzi",
+      "image"
+    ]
+  },
+  {
+    "name": "@babel/preset-env",
+    "downloads": 145180087,
+    "version": "7.29.0",
+    "description": "A Babel preset for each environment.",
+    "keywords": []
+  },
+  {
+    "name": "jsonwebtoken",
+    "downloads": 140533722,
+    "version": "9.0.3",
+    "description": "JSON Web Token implementation (symmetric and asymmetric)",
+    "keywords": [
+      "jwt"
+    ]
+  },
+  {
+    "name": "meow",
+    "downloads": 133631236,
+    "version": "14.1.0",
+    "description": "CLI app helper",
+    "keywords": [
+      "cli",
+      "bin",
+      "util",
+      "utility",
+      "helper",
+      "argv",
+      "command",
+      "line",
+      "meow",
+      "cat"
+    ]
+  },
+  {
+    "name": "next",
+    "downloads": 129711435,
+    "version": "16.1.6",
+    "description": "The React Framework",
+    "keywords": [
+      "react",
+      "framework",
+      "nextjs",
+      "web",
+      "server",
+      "node",
+      "front-end",
+      "backend",
+      "cli",
+      "vercel"
+    ]
+  },
+  {
+    "name": "listr2",
+    "downloads": 129290835,
+    "version": "10.2.1",
+    "description": "Terminal task list reborn! Create beautiful CLI interfaces via easy and logical to implement task lists that feel alive and interactive.",
+    "keywords": [
+      "listr",
+      "listr2",
+      "cli",
+      "task",
+      "list",
+      "tasklist",
+      "terminal",
+      "term",
+      "console",
+      "ascii"
+    ]
+  },
+  {
+    "name": "handlebars",
+    "downloads": 127215552,
+    "version": "4.7.8",
+    "description": "Handlebars provides the power necessary to let you build semantic templates effectively with no frustration",
+    "keywords": [
+      "handlebars",
+      "mustache",
+      "template",
+      "html"
+    ]
+  },
+  {
+    "name": "@testing-library/react",
+    "downloads": 121126887,
+    "version": "16.3.2",
+    "description": "Simple and complete React DOM testing utilities that encourage good testing practices.",
+    "keywords": [
+      "testing",
+      "react",
+      "ui",
+      "dom",
+      "jsdom",
+      "unit",
+      "integration",
+      "functional",
+      "end-to-end",
+      "e2e"
+    ]
+  },
+  {
+    "name": "react-router",
+    "downloads": 119249876,
+    "version": "7.13.1",
+    "description": "Declarative routing for React",
+    "keywords": [
+      "react",
+      "router",
+      "route",
+      "routing",
+      "history",
+      "link"
+    ]
+  },
+  {
+    "name": "framer-motion",
+    "downloads": 113798694,
+    "version": "12.34.5",
+    "description": "A simple and powerful JavaScript animation library",
+    "keywords": [
+      "react animation",
+      "react",
+      "pose",
+      "react pose",
+      "animation",
+      "gestures",
+      "drag",
+      "spring",
+      "popmotion",
+      "framer"
+    ]
+  },
+  {
+    "name": "tsx",
+    "downloads": 111022760,
+    "version": "4.21.0",
+    "description": "TypeScript Execute (tsx): Node.js enhanced with esbuild to run TypeScript & ESM files",
+    "keywords": [
+      "cli",
+      "runtime",
+      "node",
+      "cjs",
+      "commonjs",
+      "esm",
+      "typescript",
+      "typescript runner"
+    ]
+  },
+  {
+    "name": "lodash-es",
+    "downloads": 107809972,
+    "version": "4.17.23",
+    "description": "Lodash exported as ES modules.",
+    "keywords": [
+      "es6",
+      "modules",
+      "stdlib",
+      "util"
+    ]
+  },
+  {
+    "name": "react-router-dom",
+    "downloads": 103008276,
+    "version": "7.13.1",
+    "description": "Declarative routing for React web applications",
+    "keywords": [
+      "react",
+      "router",
+      "route",
+      "routing",
+      "history",
+      "link"
+    ]
+  },
+  {
+    "name": "@testing-library/user-event",
+    "downloads": 99107962,
+    "version": "14.6.1",
+    "description": "Fire events the same way the user does",
+    "keywords": [
+      "react-testing-library",
+      "dom-testing-library",
+      "react",
+      "testing"
+    ]
+  },
+  {
+    "name": "sass",
+    "downloads": 98176305,
+    "version": "1.97.3",
+    "description": "A pure JavaScript implementation of Sass.",
+    "keywords": [
+      "style",
+      "scss",
+      "sass",
+      "preprocessor",
+      "css"
+    ]
+  },
+  {
+    "name": "jszip",
+    "downloads": 90344193,
+    "version": "3.10.1",
+    "description": "Create, read and edit .zip files with JavaScript http://stuartk.com/jszip",
+    "keywords": [
+      "zip",
+      "deflate",
+      "inflate"
+    ]
+  },
+  {
+    "name": "@babel/preset-react",
+    "downloads": 84950284,
+    "version": "7.28.5",
+    "description": "Babel preset for all React plugins.",
+    "keywords": []
+  },
+  {
+    "name": "winston",
+    "downloads": 81767136,
+    "version": "3.19.0",
+    "description": "A logger for just about everything.",
+    "keywords": [
+      "winston",
+      "logger",
+      "logging",
+      "logs",
+      "sysadmin",
+      "bunyan",
+      "pino",
+      "loglevel",
+      "tools",
+      "json"
+    ]
+  },
+  {
+    "name": "hono",
+    "downloads": 80148913,
+    "version": "4.12.4",
+    "description": "Web framework built on Web Standards",
+    "keywords": [
+      "hono",
+      "web",
+      "app",
+      "http",
+      "application",
+      "framework",
+      "router",
+      "cloudflare",
+      "workers",
+      "fastly"
+    ]
+  },
+  {
+    "name": "pg",
+    "downloads": 77582304,
+    "version": "8.19.0",
+    "description": "PostgreSQL client - pure javascript & libpq with the same API",
+    "keywords": [
+      "database",
+      "libpq",
+      "pg",
+      "postgre",
+      "postgres",
+      "postgresql",
+      "rdbms"
+    ]
+  },
+  {
+    "name": "@aws-sdk/client-s3",
+    "downloads": 73814750,
+    "version": "3.1001.0",
+    "description": "AWS SDK for JavaScript S3 Client for Node.js, Browser and React Native",
+    "keywords": []
+  },
+  {
+    "name": "markdown-it",
+    "downloads": 70889518,
+    "version": "14.1.1",
+    "description": "Markdown-it - modern pluggable markdown parser.",
+    "keywords": [
+      "markdown",
+      "parser",
+      "commonmark",
+      "markdown-it",
+      "markdown-it-plugin"
+    ]
+  },
+  {
+    "name": "joi",
+    "downloads": 69954723,
+    "version": "18.0.2",
+    "description": "Object schema validation",
+    "keywords": [
+      "schema",
+      "validation"
+    ]
+  },
+  {
+    "name": "webpack-dev-server",
+    "downloads": 67425398,
+    "version": "5.2.3",
+    "description": "Serves a webpack app. Updates the browser on changes.",
+    "keywords": []
+  },
+  {
+    "name": "terminal-link",
+    "downloads": 63697738,
+    "version": "5.0.0",
+    "description": "Create clickable links in the terminal",
+    "keywords": [
+      "link",
+      "hyperlink",
+      "url",
+      "ansi",
+      "escape",
+      "terminal",
+      "term",
+      "console",
+      "command-line"
+    ]
+  },
+  {
+    "name": "recharts",
+    "downloads": 62339500,
+    "version": "3.7.0",
+    "description": "React charts",
+    "keywords": [
+      "react",
+      "reactjs",
+      "chart",
+      "react-component"
+    ]
+  },
+  {
+    "name": "ioredis",
+    "downloads": 56247194,
+    "version": "5.10.0",
+    "description": "A robust, performance-focused and full-featured Redis client for Node.js.",
+    "keywords": [
+      "redis",
+      "cluster",
+      "sentinel",
+      "pipelining"
+    ]
+  },
+  {
+    "name": "ramda",
+    "downloads": 52574959,
+    "version": "0.32.0",
+    "description": "A practical functional library for JavaScript programmers.",
+    "keywords": [
+      "ramda",
+      "functional",
+      "utils",
+      "utilities",
+      "toolkit",
+      "fp",
+      "tacit",
+      "point-free",
+      "curried",
+      "pure"
+    ]
+  },
+  {
+    "name": "socket.io-client",
+    "downloads": 45332136,
+    "version": "4.8.3",
+    "description": "Realtime application framework client",
+    "keywords": [
+      "realtime",
+      "framework",
+      "websocket",
+      "tcp",
+      "events",
+      "client"
+    ]
+  },
+  {
+    "name": "adm-zip",
+    "downloads": 45033881,
+    "version": "0.5.16",
+    "description": "Javascript implementation of zip for nodejs with support for electron original-fs. Allows user to create or extract zip files both in memory or to/from disk",
+    "keywords": [
+      "zip",
+      "methods",
+      "archive",
+      "unzip"
+    ]
+  },
+  {
+    "name": "webpack-cli",
+    "downloads": 44006726,
+    "version": "6.0.1",
+    "description": "CLI for webpack & friends",
+    "keywords": [
+      "webpack",
+      "cli",
+      "scaffolding",
+      "module",
+      "bundler",
+      "web"
+    ]
+  },
+  {
+    "name": "nodemailer",
+    "downloads": 42675900,
+    "version": "8.0.1",
+    "description": "Easy as cake e-mail sending from your Node.js applications",
+    "keywords": [
+      "Nodemailer"
+    ]
+  },
+  {
+    "name": "turbo",
+    "downloads": 38818524,
+    "version": "2.8.13",
+    "description": "Turborepo is a high-performance build system for JavaScript and TypeScript codebases.",
+    "keywords": []
+  },
+  {
+    "name": "sinon",
+    "downloads": 38561145,
+    "version": "21.0.1",
+    "description": "JavaScript test spies, stubs and mocks.",
+    "keywords": [
+      "sinon",
+      "test",
+      "testing",
+      "unit",
+      "stub",
+      "spy",
+      "fake",
+      "time",
+      "clock",
+      "mock"
+    ]
+  },
+  {
+    "name": "vue",
+    "downloads": 38049398,
+    "version": "3.5.29",
+    "description": "The progressive JavaScript framework for building modern web UI.",
+    "keywords": [
+      "vue"
+    ]
+  },
+  {
+    "name": "less",
+    "downloads": 36725857,
+    "version": "4.5.1",
+    "description": "Leaner CSS",
+    "keywords": [
+      "compile less",
+      "css nesting",
+      "css variable",
+      "css",
+      "gradients css",
+      "gradients css3",
+      "less compiler",
+      "less css",
+      "less mixins",
+      "less"
+    ]
+  },
+  {
+    "name": "prisma",
+    "downloads": 35385312,
+    "version": "7.4.2",
+    "description": "Prisma is an open-source database toolkit. It includes a JavaScript/TypeScript ORM for Node.js, migrations and a modern GUI to view and edit the data in your database. You can use Prisma in new projects or add it to an existing one.",
+    "keywords": [
+      "CLI",
+      "ORM",
+      "Prisma",
+      "Prisma CLI",
+      "prisma2",
+      "database",
+      "db",
+      "JavaScript",
+      "JS",
+      "TypeScript"
+    ]
+  },
+  {
+    "name": "mysql2",
+    "downloads": 32071946,
+    "version": "3.18.2",
+    "description": "fast mysql driver. Implements core protocol, prepared statements, ssl and compression in native JS",
+    "keywords": [
+      "mysql",
+      "client",
+      "server"
+    ]
+  },
+  {
+    "name": "@nestjs/core",
+    "downloads": 30607980,
+    "version": "11.1.15",
+    "description": "Nest - modern, fast, powerful node.js web framework (@core)",
+    "keywords": []
+  },
+  {
+    "name": "babel-core",
+    "downloads": 29192498,
+    "version": "6.26.3",
+    "description": "Babel compiler core.",
+    "keywords": [
+      "6to5",
+      "babel",
+      "classes",
+      "const",
+      "es6",
+      "harmony",
+      "let",
+      "modules",
+      "transpile",
+      "transpiler"
+    ]
+  },
+  {
+    "name": "@vitest/ui",
+    "downloads": 28518786,
+    "version": "4.0.18",
+    "description": "UI for Vitest",
+    "keywords": []
+  },
+  {
+    "name": "class-validator",
+    "downloads": 28439344,
+    "version": "0.15.1",
+    "description": "Decorator-based property validation for classes.",
+    "keywords": []
+  },
+  {
+    "name": "cypress",
+    "downloads": 28436966,
+    "version": "15.11.0",
+    "description": "Cypress is a next generation front end testing tool built for the modern web",
+    "keywords": [
+      "automation",
+      "browser",
+      "cypress",
+      "cypress.io",
+      "e2e",
+      "end-to-end",
+      "integration",
+      "component",
+      "mocks",
+      "runner"
+    ]
+  },
+  {
+    "name": "stripe",
+    "downloads": 28010175,
+    "version": "20.4.0",
+    "description": "Stripe API wrapper",
+    "keywords": [
+      "stripe",
+      "payment processing",
+      "credit cards",
+      "api"
+    ]
+  },
+  {
+    "name": "bcryptjs",
+    "downloads": 26722681,
+    "version": "3.0.3",
+    "description": "Optimized bcrypt in plain JavaScript with zero dependencies, with TypeScript support. Compatible to 'bcrypt'.",
+    "keywords": [
+      "bcrypt",
+      "password",
+      "auth",
+      "authentication",
+      "encryption",
+      "crypt",
+      "crypto"
+    ]
+  },
+  {
+    "name": "koa",
+    "downloads": 26014941,
+    "version": "3.1.2",
+    "description": "Koa web app framework",
+    "keywords": [
+      "web",
+      "app",
+      "http",
+      "application",
+      "framework",
+      "middleware",
+      "rack"
+    ]
+  },
+  {
+    "name": "@anthropic-ai/sdk",
+    "downloads": 25901978,
+    "version": "0.78.0",
+    "description": "The official TypeScript library for the Anthropic API",
+    "keywords": []
+  },
+  {
+    "name": "passport",
+    "downloads": 25236122,
+    "version": "0.7.0",
+    "description": "Simple, unobtrusive authentication for Node.js.",
+    "keywords": [
+      "express",
+      "connect",
+      "auth",
+      "authn",
+      "authentication"
+    ]
+  },
+  {
+    "name": "@clack/prompts",
+    "downloads": 22848224,
+    "version": "1.1.0",
+    "description": "Effortlessly build beautiful command-line apps \ud83e\ude84 [Try the demo](https://stackblitz.com/edit/clack-prompts?file=index.js)",
+    "keywords": [
+      "ask",
+      "clack",
+      "cli",
+      "command-line",
+      "command",
+      "input",
+      "interact",
+      "interface",
+      "menu",
+      "prompt"
+    ]
+  },
+  {
+    "name": "drizzle-orm",
+    "downloads": 20800742,
+    "version": "0.45.1",
+    "description": "Drizzle ORM package for SQL databases",
+    "keywords": [
+      "drizzle",
+      "orm",
+      "pg",
+      "mysql",
+      "singlestore",
+      "postgresql",
+      "postgres",
+      "sqlite",
+      "database",
+      "sql"
+    ]
+  },
+  {
+    "name": "h3",
+    "downloads": 19325744,
+    "version": "2.0.1-rc.14",
+    "description": "Minimal H(TTP) framework built for high performance and portability.",
+    "keywords": []
+  },
+  {
+    "name": "@azure/storage-blob",
+    "downloads": 18675590,
+    "version": "12.31.0",
+    "description": "Microsoft Azure Storage SDK for JavaScript - Blob",
+    "keywords": [
+      "azure",
+      "storage",
+      "blob",
+      "cloud",
+      "node.js",
+      "typescript",
+      "javascript",
+      "browser"
+    ]
+  },
+  {
+    "name": "mongoose",
+    "downloads": 17747806,
+    "version": "9.2.3",
+    "description": "Mongoose MongoDB ODM",
+    "keywords": [
+      "mongodb",
+      "document",
+      "model",
+      "schema",
+      "database",
+      "odm",
+      "data",
+      "datastore",
+      "query",
+      "nosql"
+    ]
+  },
+  {
+    "name": "fp-ts",
+    "downloads": 15955259,
+    "version": "2.16.11",
+    "description": "Functional programming in TypeScript",
+    "keywords": [
+      "typescript",
+      "algebraic-data-types",
+      "functional-programming"
+    ]
+  },
+  {
+    "name": "pdf-lib",
+    "downloads": 13752050,
+    "version": "1.17.1",
+    "description": "Create and modify PDF files with JavaScript",
+    "keywords": [
+      "pdf-lib",
+      "pdf",
+      "document",
+      "create",
+      "modify",
+      "creation",
+      "modification",
+      "edit",
+      "editing",
+      "typescript"
+    ]
+  },
+  {
+    "name": "@sendgrid/mail",
+    "downloads": 12717784,
+    "version": "8.1.6",
+    "description": "Twilio SendGrid NodeJS mail service",
+    "keywords": []
+  },
+  {
+    "name": "webdriverio",
+    "downloads": 12463388,
+    "version": "9.24.0",
+    "description": "Next-gen browser and mobile automation test framework for Node.js",
+    "keywords": [
+      "webdriverio",
+      "webdriver",
+      "selenium",
+      "appium",
+      "saucelabs",
+      "sauce",
+      "labs",
+      "mocha",
+      "nodeUnit",
+      "buster"
+    ]
+  },
+  {
+    "name": "jotai",
+    "downloads": 11876341,
+    "version": "2.18.0",
+    "description": "\ud83d\udc7b Primitive and flexible state management for React",
+    "keywords": [
+      "react",
+      "state",
+      "manager",
+      "management",
+      "recoil",
+      "store"
+    ]
+  },
+  {
+    "name": "stylus",
+    "downloads": 11247831,
+    "version": "0.64.0",
+    "description": "Robust, expressive, and feature-rich CSS superset",
+    "keywords": [
+      "css",
+      "parser",
+      "style",
+      "stylesheets",
+      "jade",
+      "language"
+    ]
+  },
+  {
+    "name": "resend",
+    "downloads": 11109515,
+    "version": "6.9.3",
+    "description": "Node.js library for the Resend API",
+    "keywords": []
+  },
+  {
+    "name": "node-cron",
+    "downloads": 10406385,
+    "version": "4.2.1",
+    "description": "A Lightweight Task Scheduler for Node.js",
+    "keywords": [
+      "cron",
+      "scheduler",
+      "schedule",
+      "task",
+      "job"
+    ]
+  },
+  {
+    "name": "pdf-parse",
+    "downloads": 10404980,
+    "version": "2.4.5",
+    "description": "Pure TypeScript, cross-platform module for extracting text, images, and tabular data from PDFs. Run directly in your browser or in Node!",
+    "keywords": [
+      "pdf",
+      "pdf-parser",
+      "pdf-parse",
+      "pdf.js",
+      "pdfjs",
+      "pdfjs-dist",
+      "pdf2text",
+      "pdf2json",
+      "pdf2image",
+      "pdf2pic"
+    ]
+  }
 ]

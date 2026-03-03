@@ -1,166 +1,215 @@
 ---
-name: chokidar
+name: "chokidar"
+version: "5.0.0"
+downloads: 498.2M/month
 description: >
-  Efficient cross-platform file watching library built on Node.js fs.watch with improved reliability. Use when: watching files for changes, building dev servers, hot-reloading, triggering builds on file save. NOT for: one-time file listing (use glob), file manipulation (use fs-extra).
+  Minimal and efficient cross-platform file watching library. Use when: Events are properly reported; macOS events report filenames; events are not reported twice. NOT for: in-memory-only caching; simple file-based key-value storage.
 ---
 
 # chokidar
 
 ## Overview
-chokidar is a fast, reliable file watcher that wraps Node.js `fs.watch` / `fs.watchFile` with a normalized, cross-platform API. It eliminates common issues with native file watching such as duplicate events, missing events on macOS, and lack of recursive watching on Linux. It is the watcher behind tools like Vite, webpack-dev-server, and nodemon.
+Minimal and efficient cross-platform file watching library. The `fs.watch`-based implementation is the default, which avoids polling and keeps CPU usage down.
 
 ## Installation
 ```bash
 npm install chokidar
-# yarn
-yarn add chokidar
-# pnpm
-pnpm add chokidar
 ```
 
-## Core API / Commands
-
-### watch(paths, [options])
-Creates a watcher instance.
-```js
-import chokidar from 'chokidar';
-
-// Watch a single file
-const watcher = chokidar.watch('./config.json');
-
-// Watch multiple paths
-const watcher = chokidar.watch(['src/**/*.ts', 'public/**/*']);
-
-// Watch with options
-const watcher = chokidar.watch('.', {
-  ignored: /(^|[\/\\])\../, // ignore dotfiles
-  persistent: true,
-  ignoreInitial: true,
-});
-```
-
-### Event listeners
-```js
-watcher
-  .on('add', (path) => console.log(`File added: ${path}`))
-  .on('change', (path) => console.log(`File changed: ${path}`))
-  .on('unlink', (path) => console.log(`File removed: ${path}`))
-  .on('addDir', (path) => console.log(`Directory added: ${path}`))
-  .on('unlinkDir', (path) => console.log(`Directory removed: ${path}`))
-  .on('error', (error) => console.error(`Watcher error: ${error}`))
-  .on('ready', () => console.log('Initial scan complete. Ready for changes.'));
-```
-
-### all event
-Catches all events with a single handler.
-```js
-watcher.on('all', (event, path) => {
-  console.log(event, path);
-  // event is one of: 'add', 'addDir', 'change', 'unlink', 'unlinkDir'
-});
-```
-
-### Closing the watcher
-```js
-await watcher.close();
-```
-
-### Adding and removing watched paths
-```js
-watcher.add('new-dir/**/*.js');
-watcher.add(['file1.txt', 'file2.txt']);
-
-await watcher.unwatch('old-dir');
+## Core API / Usage
+```bash
+npm install chokidar
 ```
 
 ## Common Patterns
+### Key Features
 
-### Dev server with auto-rebuild
+- **Events are properly reported**
+- **macOS events report filenames**
+- **events are not reported twice**
+- **changes are reported as add / change / unlink instead of useless `rename`**
+
+### Example
+
 ```js
 import chokidar from 'chokidar';
-import { exec } from 'child_process';
 
-const watcher = chokidar.watch('src/**/*.ts', {
-  ignoreInitial: true,
-  awaitWriteFinish: {
-    stabilityThreshold: 300,
-    pollInterval: 100,
-  },
+// One-liner for current directory
+chokidar.watch('.').on('all', (event, path) => {
+  console.log(event, path);
 });
 
-let building = false;
+// Extended options
+// ----------------
 
-watcher.on('change', async (filePath) => {
-  if (building) return;
-  building = true;
-  console.log(`Changed: ${filePath}, rebuilding...`);
-  exec('npm run build', (err, stdout, stderr) => {
-    if (err) console.error(stderr);
-    else console.log('Build complete');
-    building = false;
-  });
+// Initialize watcher.
+const watcher = chokidar.watch('file, dir, or array', {
+  ignored: (path, stats) => stats?.isFile() && !path.endsWith('.js'), // only watch js files
+  persistent: true,
 });
-```
 
-### Watch config and restart service
-```js
-import chokidar from 'chokidar';
-import fs from 'fs/promises';
+// Something to use when events are received.
+const log = console.log.bind(console);
+// Add event listeners.
+watcher
+  .on('add', (path) => log(`File ${path} has been added`))
+  .on('change', (path) => log(`File ${path} has been changed`))
+  .on('unlink', (path) => log(`File ${path} has been removed`));
 
-async function watchConfig(configPath, onReload) {
-  let config = JSON.parse(await fs.readFile(configPath, 'utf-8'));
-  onReload(config);
-
-  chokidar.watch(configPath, { ignoreInitial: true }).on('change', async () => {
-    try {
-      config = JSON.parse(await fs.readFile(configPath, 'utf-8'));
-      console.log('Config reloaded');
-      onReload(config);
-    } catch (err) {
-      console.error('Invalid config, keeping previous version');
-    }
+// More possible events.
+watcher
+  .on('addDir', (path) => log(`Directory ${path} has been added`))
+  .on('unlinkDir', (path) => log(`Directory ${path} has been removed`))
+  .on('error', (error) => log(`Watcher error: ${error}`))
+  .on('ready', () => log('Initial scan complete. Ready for changes'))
+  .on('raw', (event, path, details) => {
+    // internal
+    log('Raw event info:', event, path, details);
   });
-}
-```
 
-### Batch changes with debounce
-```js
-import chokidar from 'chokidar';
+// 'add', 'addDir' and 'change' events also receive stat() results as second
+// argument when available: https://nodejs.org/api/fs.html#fs_class_fs_stats
+watcher.on('change', (path, stats) => {
+  if (stats) console.log(`File ${path} changed size to ${stats.size}`);
+});
 
-let timeout;
-const changedFiles = new Set();
+// Watch new files.
+watcher.add('new-file');
+watcher.add(['new-file-2', 'new-file-3']);
 
-chokidar.watch('src/**/*', { ignoreInitial: true }).on('all', (event, path) => {
-  changedFiles.add(path);
-  clearTimeout(timeout);
-  timeout = setTimeout(() => {
-    console.log('Changed files:', [...changedFiles]);
-    processChangedFiles([...changedFiles]);
-    changedFiles.clear();
-  }, 200);
+// Get list of actual paths being watched on the filesystem
+let watchedPaths = watcher.getWatched();
+
+// Un-watch some files.
+await watcher.unwatch('new-file');
+
+// Stop watching. The method is async!
+await watcher.close().then(() => console.log('closed'));
+
+// Full list of options. See below for descriptions.
+// Do not use this example!
+chokidar.watch('file', {
+  persistent: true,
+
+  // ignore .txt files
+  ignored: (file) => file.endsWith('.txt'),
+  // watch only .txt files
+  // ignored: (file, _stats) => _stats?.isFile() && !file.endsWith('.txt'),
+
+  awaitWriteFinish: true, // emit single event when chunked writes are completed
+  atomic: true, // emit proper events when "atomic writes" (mv _tmp file) are used
+
+  // The options also allow specifying custom intervals in ms
+  // awaitWriteFinish: {
+  //   stabilityThreshold: 2000,
+  //   pollInterval: 100
+  // },
+  // atomic: 100,
+
+  interval: 100,
+  binaryInterval: 300,
+
+  cwd: '.',
+  depth: 99,
+
+  followSymlinks: true,
+  ignoreInitial: false,
+  ignorePermissionErrors: false,
+  usePolling: false,
+  alwaysStat: false,
 });
 ```
 
 ## Configuration
-| Option | Type | Default | Description |
-|--------|------|---------|-------------|
-| `persistent` | boolean | `true` | Keep process running while watching |
-| `ignored` | string/RegExp/function | - | Paths to ignore |
-| `ignoreInitial` | boolean | `false` | Skip `add` events during initial scan |
-| `followSymlinks` | boolean | `true` | Follow symlinked directories |
-| `cwd` | string | - | Base directory for relative paths |
-| `depth` | number | `undefined` | Max subdirectory depth to traverse |
-| `usePolling` | boolean | `false` | Use `fs.watchFile` instead of `fs.watch` |
-| `interval` | number | `100` | Polling interval in ms (if `usePolling`) |
-| `awaitWriteFinish` | boolean/object | `false` | Wait for file writes to complete |
-| `atomic` | boolean/number | `true` | Handle atomic writes (rename-based saves) |
+```js
+import chokidar from 'chokidar';
+
+// One-liner for current directory
+chokidar.watch('.').on('all', (event, path) => {
+  console.log(event, path);
+});
+
+// Extended options
+// ----------------
+
+// Initialize watcher.
+const watcher = chokidar.watch('file, dir, or array', {
+  ignored: (path, stats) => stats?.isFile() && !path.endsWith('.js'), // only watch js files
+  persistent: true,
+});
+
+// Something to use when events are received.
+const log = console.log.bind(console);
+// Add event listeners.
+watcher
+  .on('add', (path) => log(`File ${path} has been added`))
+  .on('change', (path) => log(`File ${path} has been changed`))
+  .on('unlink', (path) => log(`File ${path} has been removed`));
+
+// More possible events.
+watcher
+  .on('addDir', (path) => log(`Directory ${path} has been added`))
+  .on('unlinkDir', (path) => log(`Directory ${path} has been removed`))
+  .on('error', (error) => log(`Watcher error: ${error}`))
+  .on('ready', () => log('Initial scan complete. Ready for changes'))
+  .on('raw', (event, path, details) => {
+    // internal
+    log('Raw event info:', event, path, details);
+  });
+
+// 'add', 'addDir' and 'change' events also receive stat() results as second
+// argument when available: https://nodejs.org/api/fs.html#fs_class_fs_stats
+watcher.on('change', (path, stats) => {
+  if (stats) console.log(`File ${path} changed size to ${stats.size}`);
+});
+
+// Watch new files.
+watcher.add('new-file');
+watcher.add(['new-file-2', 'new-file-3']);
+
+// Get list of actual paths being watched on the filesystem
+let watchedPaths = watcher.getWatched();
+
+// Un-watch some files.
+await watcher.unwatch('new-file');
+
+// Stop watching. The method is async!
+await watcher.close().then(() => console.log('closed'));
+
+// Full list of options. See below for descriptions.
+// Do not use this example!
+chokidar.watch('file', {
+  persistent: true,
+
+  // ignore .txt files
+  ignored: (file) => file.endsWith('.txt'),
+  // watch only .txt files
+  // ignored: (file, _stats) => _stats?.isFile() && !file.endsWith('.txt'),
+
+  awaitWriteFinish: true, // emit single event when chunked writes are completed
+  atomic: true, // emit proper events when "atomic writes" (mv _tmp file) are used
+
+  // The options also allow specifying custom intervals in ms
+  // awaitWriteFinish: {
+  //   stabilityThreshold: 2000,
+  //   pollInterval: 100
+  // },
+  // atomic: 100,
+
+  interval: 100,
+  binaryInterval: 300,
+
+  cwd: '.',
+  depth: 99,
+
+  followSymlinks: true,
+  ignoreInitial: false,
+  ignorePermissionErrors: false,
+  usePolling: false,
+  alwaysStat: false,
+});
+```
 
 ## Tips & Gotchas
-- **Always set `ignoreInitial: true`** if you only care about changes after startup. Otherwise, `add` fires for every existing file during the initial scan.
-- **`awaitWriteFinish` prevents partial reads**: When editors save via temp files or partial writes, enable this to wait until file size stabilizes before firing the event.
-- **Use `usePolling` on network filesystems**: Native watchers don't work reliably on NFS, Docker volumes, or VirtualBox shared folders. Polling is slower but reliable.
-- **`ignored` accepts multiple formats**: A string glob (`'**/node_modules/**'`), a RegExp (`/\.git/`), or a function (`(path) => path.includes('node_modules')`).
-- **Always handle the `error` event**: Without an error handler, watcher errors will crash your process.
-- **Closing is async**: `watcher.close()` returns a Promise. Await it in cleanup/shutdown code.
-- **macOS and `fsevents`**: On macOS, chokidar uses the native `fsevents` API for better performance. It is installed automatically as an optional dependency.
-- **`ready` event**: Fires after the initial scan is complete. Useful for knowing when the watcher is fully set up.
+- This package is ESM-only. Use `import` syntax; `require()` is not supported.
+- Version 5 introduced breaking changes — check migration guide before upgrading.

@@ -1,94 +1,50 @@
 ---
-name: prettier
+name: "prettier"
+version: "3.8.1"
+downloads: 305.4M/month
 description: >
-  Opinionated code formatter. Use when: consistent formatting across team, auto-format on save, eliminating style debates. NOT for: linting logic errors (use ESLint), custom formatting preferences beyond its options.
+  Prettier is an opinionated code formatter. Use when: enforcing code style consistency; auto-fixing code format issues; CI/CD code quality checks. NOT for: runtime data validation; security scanning.
 ---
 
 # prettier
 
+## Overview
+Prettier is an opinionated code formatter. It enforces a consistent style by parsing your code and re-printing it with its own rules that take the maximum line length into account, wrapping code when necessary.
+
 ## Installation
 ```bash
-npm install -D prettier
-echo {} > .prettierrc
+npm install prettier
 ```
 
-## .prettierrc
-
-```json
-{
-  "semi": true,
-  "singleQuote": true,
-  "tabWidth": 2,
-  "trailingComma": "all",
-  "printWidth": 100,
-  "bracketSpacing": true,
-  "arrowParens": "always",
-  "endOfLine": "lf"
-}
+## Core API / Usage
+```js
+foo(reallyLongArg(), omgSoManyParameters(), IShouldRefactorThis(), isThereSeriouslyAnotherOne());
 ```
 
-## package.json Scripts
-
-```json
-{
-  "scripts": {
-    "format": "prettier --write .",
-    "format:check": "prettier --check ."
-  }
-}
-```
-
-## .prettierignore
-
-```
-node_modules
-dist
-.next
-coverage
-*.min.js
+```js
+foo(
+  reallyLongArg(),
+  omgSoManyParameters(),
+  IShouldRefactorThis(),
+  isThereSeriouslyAnotherOne(),
+);
 ```
 
 ## Common Patterns
+Refer to the [official documentation](https://github.com/prettier/prettier) for common patterns, recipes, and advanced usage examples.
 
-### Format on save (VS Code)
-```json
-// .vscode/settings.json
-{
-  "editor.defaultFormatter": "esbenp.prettier-vscode",
-  "editor.formatOnSave": true,
-  "[typescript]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
-  "[json]": { "editor.defaultFormatter": "esbenp.prettier-vscode" }
-}
-```
-
-### With Husky (format on commit)
-```bash
-npm install -D husky lint-staged
-npx husky init
-echo "npx lint-staged" > .husky/pre-commit
-```
-```json
-// package.json
-{
-  "lint-staged": {
-    "*.{ts,tsx,js,json,css,md}": ["prettier --write"]
-  }
-}
-```
-
-### With ESLint (disable conflicting rules)
-```bash
-npm install -D eslint-config-prettier
-```
 ```js
-// eslint.config.js
-import prettier from 'eslint-config-prettier';
-export default [...otherConfigs, prettier];
+foo(
+  reallyLongArg(),
+  omgSoManyParameters(),
+  IShouldRefactorThis(),
+  isThereSeriouslyAnotherOne(),
+);
 ```
+
+## Configuration
+See the [official documentation](https://www.npmjs.com/package/prettier) for configuration options and advanced settings.
 
 ## Tips & Gotchas
-- Prettier is intentionally opinionated — limited configuration by design
-- `prettier --check` returns exit code 1 if any file needs formatting (use in CI)
-- Use `// prettier-ignore` to skip a specific section
-- Prettier handles: JS, TS, JSX, TSX, JSON, CSS, SCSS, HTML, Markdown, YAML
-- Plugin for Tailwind CSS: `prettier-plugin-tailwindcss` auto-sorts class names
+- Includes built-in TypeScript type definitions.
+- Current version: 3.8.1. Check the changelog when upgrading across major versions.

@@ -1,75 +1,70 @@
 ---
-name: uuid
+name: "uuid"
+version: "13.0.0"
+downloads: 877.5M/month
 description: >
-  Generate RFC9562 compliant UUIDs. Use when: standards-compliant UUIDs required (v4 random, v7 time-ordered), interop with other systems, database primary keys. NOT for: shorter IDs (use nanoid), non-standard ID formats.
+  RFC9562 UUIDs. Use when: Complete - Support for all RFC9562 UUID versions; Cross-platform - Support for..; Chrome, Safari, Firefox, and Edge. NOT for: server-side CLI utilities; database access layer.
 ---
 
 # uuid
 
-> v13.0.0 — RFC9562 UUIDs (formerly RFC4122)
+## Overview
+RFC9562 UUIDs. <!-- -- This file is auto-generated from README_js.md.
 
 ## Installation
 ```bash
 npm install uuid
 ```
 
-## Core API
-
-```ts
-import { v4 as uuidv4, v7 as uuidv7, validate, version } from 'uuid';
-
-// v4 — random UUID (most common)
-uuidv4()  // 'b7e2c4a8-3f1d-4b2e-9a0c-5f8d7e6b1234'
-
-// v7 — time-ordered UUID (better for DB indexes — NEW in uuid v9+)
-uuidv7()  // '018f4c3e-7a2b-7000-8000-b7e2c4a83f1d'
-
-// Validate
-validate('b7e2c4a8-3f1d-4b2e-9a0c-5f8d7e6b1234')  // true
-validate('not-a-uuid')  // false
-
-// Get version
-version('b7e2c4a8-3f1d-4b2e-9a0c-5f8d7e6b1234')  // 4
+## Core API / Usage
+```bash
+npm install uuid
 ```
 
-## UUID Versions
+```js
+import { v4 as uuidv4 } from 'uuid';
 
-| Version | Description | Use Case |
-|---------|-------------|----------|
-| v4 | Random | General purpose, most common |
-| v7 | Time-ordered random | Database primary keys (sortable) |
-| v1 | Timestamp + MAC | When time ordering needed (legacy) |
-| v5 | Namespace + SHA-1 | Deterministic IDs from input |
-| v3 | Namespace + MD5 | Deterministic IDs (legacy) |
+uuidv4(); // ⇨ '9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb6d'
+```
 
 ## Common Patterns
+### Pattern 1
 
-### Database primary keys
-```ts
-// v4 for general use
-const user = { id: uuidv4(), name: 'Alice' };
+```js
+import { NIL as NIL_UUID } from 'uuid';
 
-// v7 for better index performance (time-sortable)
-const event = { id: uuidv7(), type: 'click', timestamp: Date.now() };
+NIL_UUID; // ⇨ '00000000-0000-0000-0000-000000000000'
 ```
 
-### Deterministic IDs (v5)
-```ts
-import { v5 as uuidv5 } from 'uuid';
+### Pattern 2
 
-const MY_NAMESPACE = '6ba7b810-9dad-11d1-80b4-00c04fd430c8';
-const id = uuidv5('https://example.com/users/alice', MY_NAMESPACE);
-// Same input always produces same UUID
+```js
+import { MAX as MAX_UUID } from 'uuid';
+
+MAX_UUID; // ⇨ 'ffffffff-ffff-ffff-ffff-ffffffffffff'
 ```
 
-### Compact format (no hyphens)
-```ts
-uuidv4().replace(/-/g, '')  // 32 hex chars
+### Pattern 3
+
+```js
+import { parse as uuidParse } from 'uuid';
+
+// Parse a UUID
+uuidParse('6ec0bd7f-11c0-43da-975e-2a8ad9ebae0b'); // ⇨
+// Uint8Array(16) [
+//   110, 192, 189, 127,  17,
+//   192,  67, 218, 151,  94,
+//    42, 138, 217, 235, 174,
+//    11
+// ]
 ```
+
+## Configuration
+See the [official documentation](https://www.npmjs.com/package/uuid) for configuration options and advanced settings.
 
 ## Tips & Gotchas
-- **Prefer v7 over v1** for new time-ordered UUIDs — v7 is the modern standard
-- v4 UUIDs are NOT sequential — use v7 for database PKs to avoid index fragmentation
-- In PostgreSQL, use `uuid` column type + `gen_random_uuid()` for native generation
-- `validate()` checks format only, not whether the UUID was actually generated
-- For very high throughput, `nanoid` is faster since it doesn't need UUID format
+- This package is ESM-only. Use `import` syntax; `require()` is not supported.
+- Includes built-in TypeScript type definitions.
+- Works in both Node.js and browser environments.
+- Starting with `uuid@12` CommonJS is no longer supported. See implications and motivation for details.
+- Ordering of values in the byte arrays used by `parse()` and `stringify()` follows the left &Rarr; right order of hex-pairs in UUID strings. As shown in the example below.
