@@ -1,33 +1,35 @@
-import type { PackageEntry } from './types.js';
-
-interface DownloadStats {
+export interface PackageScore {
   downloads: number;
-  start: string;
-  end: string;
-  package: string;
+  version: string;
+  description: string;
 }
 
-export async function fetchDownloads(packageName: string): Promise<number> {
-  const url = `https://api.npmjs.org/downloads/point/last-month/${packageName}`;
-  const res = await fetch(url);
+export async function scorePackage(name: string): Promise<PackageScore> {
+  const [downloadsRes, registryRes] = await Promise.all([
+    fetch(`https://api.npmjs.org/downloads/point/last-month/${name}`),
+    fetch(`https://registry.npmjs.org/${name}`),
+  ]);
 
-  if (!res.ok) {
-    throw new Error(`Failed to fetch downloads for ${packageName}: ${res.statusText}`);
+  if (!downloadsRes.ok) {
+    throw new Error(
+      `Failed to fetch download stats for ${name}: ${downloadsRes.statusText}`
+    );
+  }
+  if (!registryRes.ok) {
+    throw new Error(
+      `Failed to fetch registry info for ${name}: ${registryRes.statusText}`
+    );
   }
 
-  const data = (await res.json()) as DownloadStats;
-  return data.downloads;
-}
+  const downloadsData = (await downloadsRes.json()) as { downloads: number };
+  const registryData = (await registryRes.json()) as {
+    "dist-tags": { latest: string };
+    description?: string;
+  };
 
-export async function scorePackages(packages: PackageEntry[]): Promise<Map<string, number>> {
-  const scores = new Map<string, number>();
-
-  for (const pkg of packages) {
-    const downloads = await fetchDownloads(pkg.name);
-    // Normalized score — downloads component only for now
-    // Full formula: downloads×0.4 + stars×0.3 + mentions×0.3
-    scores.set(pkg.name, downloads);
-  }
-
-  return scores;
+  return {
+    downloads: downloadsData.downloads,
+    version: registryData["dist-tags"].latest,
+    description: registryData.description ?? "",
+  };
 }

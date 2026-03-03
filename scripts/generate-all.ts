@@ -1,33 +1,49 @@
-import fs from 'fs-extra';
-import path from 'node:path';
-import { fileURLToPath } from 'node:url';
-import { generateSkill } from '../src/generator.js';
-import type { PackageEntry } from '../src/types.js';
+import fs from "fs-extra";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
+import { generateSkill } from "../src/generator.js";
+import type { PackageEntry } from "../src/types.js";
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const dataPath = path.resolve(__dirname, "../data/top100.json");
 const BATCH_SIZE = 5;
 
 async function main() {
-  const dataPath = path.resolve(__dirname, '../data/top100.json');
   const packages: PackageEntry[] = await fs.readJson(dataPath);
+  let success = 0;
+  let failed = 0;
 
-  console.log(`Generating skills for ${packages.length} packages (batch size: ${BATCH_SIZE})...\n`);
+  console.log(
+    `Generating skills for ${packages.length} packages (batches of ${BATCH_SIZE})...\n`
+  );
 
   for (let i = 0; i < packages.length; i += BATCH_SIZE) {
     const batch = packages.slice(i, i + BATCH_SIZE);
-    console.log(`Batch ${Math.floor(i / BATCH_SIZE) + 1}: ${batch.map((p) => p.name).join(', ')}`);
+    const batchNum = Math.floor(i / BATCH_SIZE) + 1;
+    const totalBatches = Math.ceil(packages.length / BATCH_SIZE);
 
-    await Promise.all(batch.map((pkg) => generateSkill(pkg)));
+    console.log(
+      `[Batch ${batchNum}/${totalBatches}] ${batch.map((p) => p.name).join(", ")}`
+    );
 
-    console.log(`  ✓ Batch complete\n`);
+    const results = await Promise.allSettled(
+      batch.map((pkg) => generateSkill(pkg))
+    );
+
+    for (const result of results) {
+      if (result.status === "fulfilled" && result.value.success) {
+        success++;
+      } else {
+        failed++;
+      }
+    }
+
+    console.log(`  Done\n`);
   }
 
-  console.log('Done! All skills generated.');
+  console.log(
+    `\nDone: ${success} succeeded, ${failed} failed out of ${packages.length}`
+  );
 }
 
-main().catch((err) => {
-  console.error('Generation failed:', err);
-  process.exit(1);
-});
+main().catch(console.error);
